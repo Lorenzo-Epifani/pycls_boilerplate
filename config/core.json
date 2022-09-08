@@ -1,0 +1,37 @@
+{
+    "other_options":{},
+    "cmd":{
+    "function1": {
+        "entry_function": "_f1",
+        "doc": "doc_f1"
+    },
+    "function2": {
+        "option1":4,
+        "option2":4,
+        "entry_function": "_f2",
+        "doc": "doc_f2"
+    },
+    "function3": {
+        "entry_function": "_f3",
+        "doc": "doc_f3",
+        "option1": 2,
+        "option2":true,
+        "option3":false,
+        "option4":"ok",
+        "option5":[1,2,3],
+        "option6":"ko",
+        "option7":5
+},
+"function4": {
+        "entry_function": "_f4",
+        "doc": "doc_f4"
+    },
+    "function5": {
+        "entry_function": "_f5",
+        "doc": "doc_f5"
+    },
+    "debug_function": {
+        "entry_function": "_debug",
+        "doc": "doc_debug"
+    }}
+}
