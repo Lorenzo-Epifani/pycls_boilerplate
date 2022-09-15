@@ -1,37 +1,32 @@
 {
-    "other_options":{},
-    "cmd":{
-    "function1": {
-        "entry_function": "_f1",
-        "doc": "doc_f1"
-    },
-    "function2": {
-        "option1":4,
-        "option2":4,
-        "entry_function": "_f2",
-        "doc": "doc_f2"
-    },
-    "function3": {
-        "entry_function": "_f3",
-        "doc": "doc_f3",
-        "option1": 2,
-        "option2":true,
-        "option3":false,
-        "option4":"ok",
-        "option5":[1,2,3],
-        "option6":"ko",
-        "option7":5
-},
-"function4": {
-        "entry_function": "_f4",
-        "doc": "doc_f4"
-    },
-    "function5": {
-        "entry_function": "_f5",
-        "doc": "doc_f5"
-    },
-    "debug_function": {
-        "entry_function": "_debug",
-        "doc": "doc_debug"
-    }}
+    "global_conf": {},
+    "cmd": {
+        "s2_dw": {
+            "geo_files":["Tormaresca", "Casillo"],
+            "time_window":{
+                "start":[2021,1,1],
+                "end":[2022,1,1]
+            },
+            "time_delta":7,
+            "limit":1,
+            "overwrite":{
+                "flag": true,
+                "root": "14_09_2022_11_51_41"
+            },
+            "timeout_sec":300,
+            "doc": "Download files\n"
+        },
+        "s2_ct": {
+            "time_delta":7,
+            "geo_files":["Tormaresca", "Casillo"],
+            "time_window":{
+                "start":[2021,1,1],
+                "end":[2022,1,1]
+            },
+            "doc": "Count files"
+        },
+        "debug": {
+            "doc": "debug function TODO"
+        }
+    }
 }

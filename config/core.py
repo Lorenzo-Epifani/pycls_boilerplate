@@ -1,4 +1,5 @@
 import json
+from socket import timeout
 from typing import List, Set, Dict, Union, Any, Callable, Tuple
 from xml.dom import ValidationErr
 import cerberus as cer # type: ignore
@@ -14,39 +15,59 @@ def _init()->Dict[str,Dict[str,str]]:
             'schema' : {k:v for k,v in entry.items()}
         }
         reformat['schema']['doc'] = rule
-        reformat['schema']['entry_function'] = rule
         return reformat
-        
-    schema = {
-        "function1": {},
-        "function2": {
-            "option1":{'type': 'integer', 'required': True, 'max':5,'min':2},
-            "option2":{'type': 'integer', 'required': True, 'max':5,'min':2}
+
+    def type_required(_type,required=True):
+        return {'type': _type,'required':required}
+    schema={
+        "s2_dw": {
+            "limit": type_required('integer'),
+            "geo_files": type_required('list'),
+            "time_window": {
+                'type': 'dict',
+                'required': True,
+                'schema': {
+                    'start': type_required('list'),
+                    'end': type_required('list')
+                    },
+            },
+            "time_delta": type_required('integer'),
+            "timeout_sec": type_required('integer'),
+            "overwrite": {
+                'type': 'dict',
+                'required': True,
+                'schema': {
+                    'flag': type_required('boolean'),
+                    'root': type_required('string')
+                }
+            }
         },
-        "function3": {
-            'option1': {'type': 'integer', 'required': True, 'min':1},
-            'option2':{'type': 'boolean', 'required': True},
-            'option3':{'type': 'boolean', 'required': True},
-            'option4':{'type': 'string', 'required': True},
-            'option5':{'type': 'list', 'required': True},#!!!!
-            'option6':{'type': 'string', 'required': True},
-            "option7":{'type': 'integer', 'required': True, 'max':10,'min':1},
+        "s2_ct": {
+            "geo_files": type_required('list'),
+            "time_window": {
+                'type': 'dict',
+                'required': True,
+                'schema': {
+                    'start': type_required('list'),
+                    'end': type_required('list')
+                },
+            },
+            "time_delta": type_required('integer'),
         },
-        "function4": {},
-        "function5": {},
-        "debug_function": {}
-    }    
+        "debug": {}
+        }   
+    
 
     schema = {key:cerberus_format(value) for key,value in schema.items()}
+    #pprint(schema)
     with open('./config/core.json') as config_file:
-            conf = json.load(config_file) #CONFIG FILE
-            conf = conf.get('cmd',{})
+        conf = json.load(config_file) #CONFIG FILE
     validator = cer.Validator()
 
     validator.schema = schema
-    if (not validator.validate(conf, schema)):
+    if (not validator.validate(conf['cmd'], schema)):
         print(validator.errors)
-        raise ValidationErr(validator.errors)
+        raise ValidationErr(validator.errors) 
     return conf
 
 def _info():
