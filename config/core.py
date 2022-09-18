@@ -7,6 +7,8 @@ import json
 from operator import itemgetter
 from pprint import pprint
 
+VALIDATE_ENABLED = True
+
 def _init()->Dict[str,Dict[str,str]]:
     def cerberus_format(entry,rule = {'type': 'string', 'required': True}):
         reformat = {
@@ -65,7 +67,7 @@ def _init()->Dict[str,Dict[str,str]]:
     validator = cer.Validator()
 
     validator.schema = schema
-    if (not validator.validate(conf['cmd'], schema)):
+    if VALIDATE_ENABLED and (not validator.validate(conf['cmd'], schema)):
         print(validator.errors)
         raise ValidationErr(validator.errors) 
     return conf
