@@ -10,7 +10,7 @@ def set_config(*args, **kwargs):
         global cl_args
         global cmd_to_f
 
-        local_conf = core_conf.content['cmd'][args[0]]
+        local_conf = core_conf.content['cmd'][sys.argv[1]]
         cmd_to_f[args[0]] = func 
         global_conf = core_conf.content['global_conf']
         cl_args = sys.argv[1:]
