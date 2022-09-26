@@ -40,7 +40,9 @@ def s2_download():
     '''
     Write your code here.
     This will be executed with 'function1' as command line argument.
-    _C takes values from config/function1/value.json
+    _LOC takes values from config/function1/value.json
+    _GLB takes values from config/global.json
+    _CLA takes line arguments
     '''
     _LOC = local_conf
     _GLB = global_conf
@@ -53,7 +55,9 @@ def s2_count():
     '''
     Write your code here.
     This will be executed with 'function2' as command line argument.
-    _C takes values from config/function2/value.json
+    _LOC takes values from config/function2/value.json
+    _GLB takes values from config/global.json
+    _CLA takes line arguments
     '''
     _LOC = local_conf
     _GLB = global_conf
@@ -66,7 +70,10 @@ def debug_function():
     '''
     Write your code here.
     This will be executed with 'debug' as command line argument.
-    _C takes values from config/debug/value.json
+    _LOC takes values from config/debug/value.json
+    _GLB takes values from config/global.json
+    _CLA takes line arguments
+
     '''
     print('debug')
     _LOC = local_conf
