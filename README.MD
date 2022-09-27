@@ -19,7 +19,7 @@ you will execute ```function1(context)```.
 
 | key   |      value      |  source |
 |----------|:-------------|:------|
-| ```_LOC``` |local config files | ```config/\<example__c\>/values.json``` |
+| ```_LOC``` |local config files | ```config/example__c/values.json``` |
 | ```_GLB``` |global config files   |   ```config/global.json``` |
 | ```_CLA``` |command line arguments |     |
 
@@ -27,7 +27,7 @@ In this way, you just have to create:
 ```
 config/command__c/values.json
 ``` 
-in order to make usable the ```@set_config('command')``` decorator. \
+In order to make usable the ```@set_config('command')``` decorator. \
 Only folders ending with ```__c``` are bound to the corresponding decorator (without the ending ```'__c'```). \
 You also have to create the ```config/command__c/validator.py``` file. \
 This file expose and validate the parent ```values.json```. \
