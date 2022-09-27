@@ -9,34 +9,34 @@ cmd_to_f={}
 def _help():
     print(f'\nCOMMANDS LIST:\n')
     for elem in config.conf_list:
+        
         print('##################################\n')
-        print(f'Function name:\n{elem}\n')
+        print(f'Function name:\n{elem.replace("__c","")}\n')
         print(f'Description:\n{config.entry[elem]["doc"]}\n')
     print('##################################\n')
     exit()
-
+    
 def set_config(*args, **kwargs):
     def inner(func):
-
-        global global_conf
-        global local_conf
-        global cl_args
         global cmd_to_f
         cla_1 = None
         try:
             cla_1 = f'{sys.argv[1]}__c'
         except IndexError as e:
             _help()
-        local_conf = config.entry[cla_1]
-        cmd_to_f[args[0]] = func 
-        global_conf = config.global_conf
-        cl_args = sys.argv[1:]
-        return func   
+        _context={
+            "_LOC" : config.entry[cla_1],
+            "_GLB" : config.global_conf,
+            "_CLA" : sys.argv[1:]
+        }
+        cmd_to_f[args[0]] = func
+        func.__defaults__=(_context,) 
+        return func
     return inner
 
 
 @set_config('function1')
-def s2_download():
+def s2_download(context):
     '''
     Write your code here.
     This will be executed with 'function1' as command line argument.
@@ -44,14 +44,12 @@ def s2_download():
     _GLB takes values from config/global.json
     _CLA takes line arguments
     '''
-    _LOC = local_conf
-    _GLB = global_conf
-    _CLA = cl_args
+
     pass
 
 
 @set_config('function2')
-def s2_count():
+def s2_count(context):
     '''
     Write your code here.
     This will be executed with 'function2' as command line argument.
@@ -59,14 +57,12 @@ def s2_count():
     _GLB takes values from config/global.json
     _CLA takes line arguments
     '''
-    _LOC = local_conf
-    _GLB = global_conf
-    _CLA = cl_args
+
     pass
 
 
 @set_config('debug')
-def debug_function():
+def debug_function(context):
     '''
     Write your code here.
     This will be executed with 'debug' as command line argument.
@@ -76,9 +72,7 @@ def debug_function():
 
     '''
     print('debug')
-    _LOC = local_conf
-    _GLB = global_conf
-    _CLA = cl_args
+    print(context)
     pass
 
 
