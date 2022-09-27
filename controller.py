@@ -16,21 +16,20 @@ def _help():
     print('##################################\n')
     exit()
     
-def set_config(*args, **kwargs):
+def set_config(key):
     def inner(func):
         global cmd_to_f
         cla_1 = None
         try:
-            cla_1 = f'{sys.argv[1]}__c'
+            config_name = f'{key}__c'
         except IndexError as e:
             _help()
         _context={
-            "_LOC" : config.entry[cla_1],
+            "_LOC" : config.entry[config_name],
             "_GLB" : config.global_conf,
             "_CLA" : sys.argv[1:]
         }
-        cmd_to_f[args[0]] = func
-        func.__defaults__=(_context,) 
+        cmd_to_f[key] = lambda: func(_context)
         return func
     return inner
 

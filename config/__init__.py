@@ -9,8 +9,6 @@ with open(f'{this_dirname}/global_conf.json') as g_f:
     global_conf=json.load(g_f)
 all_folders=[a for a in os.walk(this_dirname)][0][1]
 conf_list=[a for a in all_folders if bool(re.findall(r"__c$",a))]
-if '__pycache__' in conf_list: conf_list.remove('__pycache__')
-#paths = [f'{this_dirname}/{name}' for name in conf_list]
 entry={}
 validation={}
 for module_name in conf_list:
