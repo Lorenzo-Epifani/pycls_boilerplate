@@ -2,12 +2,13 @@ from importlib.resources import path
 from importlib import import_module
 import os 
 import json
-
+import re
 this_dirname = os.path.dirname(__file__)
 global_conf=None
 with open(f'{this_dirname}/global_conf.json') as g_f:
     global_conf=json.load(g_f)
-conf_list=[a for a in os.walk(this_dirname)][0][1]
+all_folders=[a for a in os.walk(this_dirname)][0][1]
+conf_list=[a for a in all_folders if bool(re.findall(r"__c$",a))]
 if '__pycache__' in conf_list: conf_list.remove('__pycache__')
 #paths = [f'{this_dirname}/{name}' for name in conf_list]
 entry={}

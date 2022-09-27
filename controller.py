@@ -24,7 +24,7 @@ def set_config(*args, **kwargs):
         global cmd_to_f
         cla_1 = None
         try:
-            cla_1 = sys.argv[1]
+            cla_1 = f'{sys.argv[1]}__c'
         except IndexError as e:
             _help()
         local_conf = config.entry[cla_1]
