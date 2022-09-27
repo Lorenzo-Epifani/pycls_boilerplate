@@ -2,6 +2,7 @@ from distutils.command.config import config
 from os import getenv
 import sys
 import config
+from pprint import pprint
 #print(config.entry['conf1'])
 #print(config.global_conf)
 cmd_to_f={}
@@ -56,7 +57,6 @@ def s2_count(context):
     _GLB takes values from config/global.json
     _CLA takes line arguments
     '''
-
     pass
 
 
@@ -71,7 +71,7 @@ def debug_function(context):
 
     '''
     print('debug')
-    print(context)
+    pprint(context)
     pass
 
 
