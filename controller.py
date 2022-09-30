@@ -28,7 +28,6 @@ def set_config(key):
         _context={
             "_LOC" : config.entry[config_name],
             "_GLB" : config.global_conf,
-            "_CLA" : sys.argv[1:]
         }
         cmd_to_f[key] = lambda: func(_context)
         return func
@@ -42,9 +41,7 @@ def s2_download(context):
     This will be executed with 'function1' as command line argument.
     _LOC takes values from config/function1/value.json
     _GLB takes values from config/global.json
-    _CLA takes line arguments
     '''
-
     pass
 
 
@@ -55,7 +52,6 @@ def s2_count(context):
     This will be executed with 'function2' as command line argument.
     _LOC takes values from config/function2/value.json
     _GLB takes values from config/global.json
-    _CLA takes line arguments
     '''
     pass
 
@@ -67,7 +63,6 @@ def debug_function(context):
     This will be executed with 'debug' as command line argument.
     _LOC takes values from config/debug/value.json
     _GLB takes values from config/global.json
-    _CLA takes line arguments
 
     '''
     print('debug')
