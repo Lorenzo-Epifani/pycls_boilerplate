@@ -32,3 +32,7 @@ Only folders ending with ```__c``` are bound to the corresponding decorator (wit
 You also have to create the ```config/command__c/validator.py``` file. \
 This file expose and validate the parent ```values.json```. \
 You can just copy paste the ```config/default__c``` folder for fast prototyping. This folder represent the minimum working example.
+
+
+# TODO
+ADD CLA OVERRIDE
