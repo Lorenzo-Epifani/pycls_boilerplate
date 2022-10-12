@@ -36,3 +36,4 @@ You can just copy paste the ```config/default__c``` folder for fast prototyping.
 
 # TODO
 ADD CLA OVERRIDE
+ADD DEBBUGGER GENERATOR FUNCTION
